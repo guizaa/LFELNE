@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/roll_icon"
+        android:layout_width="77dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="15dp"
+        app:srcCompat="@drawable/roll_icon" />
+    <TextView
+        android:id="@+id/date_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/roll_icon"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/black"
+        android:text="@string/_1_2_21_1_4_21"
+        />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/roll_icon"
+        android:layout_below="@+id/date_range"
+        android:layout_marginTop="-7dp"
+        android:textSize="35sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="@string/cancun"
+        />
+    <TextView
+        android:id="@+id/roll_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/roll_icon"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="-7dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+        android:text="@string/portra_400"
+        />
+</RelativeLayout>

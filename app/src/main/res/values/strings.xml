@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">LFELNE</string>
+    <string name="rolls">ROLLS</string>
+    <string name="stats">STATS</string>
+    <string name="map">MAP</string>
+    <string name="settings">SETTINGS</string>
+    <string name="lflne_logo">lflne logo</string>
+    <string name="_1_2_21_1_4_21">1/2/21 - 1/4/21</string>
+    <string name="cancun">CANCUN</string>
+    <string name="portra_400">PORTRA 400</string>
+    <string name="roll_name">Roll Name</string>
+    <string name="add_roll">Add Roll</string>
+    <string name="roll_type">Roll Type</string>
+    <string name="number_of_exposures">Number of Exposures</string>
+    <string name="add">ADD</string>
+    <string name="title_activity_general_roll">GeneralRollActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

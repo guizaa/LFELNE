@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRollActivity">
+
+    <EditText
+        android:id="@+id/roll_name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/roll_name"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/gray"
+        android:textColorHighlight="@color/light_gray"
+        android:ems="20"
+        android:textCursorDrawable="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/roll_type_edit"
+        app:layout_constraintTop_toTopOf="parent"
+    />
+
+    <EditText
+        android:id="@+id/roll_type_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/roll_type"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/gray"
+        android:textColorHighlight="@color/light_gray"
+        android:ems="20"
+        android:textCursorDrawable="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/roll_exposures_edit"
+        app:layout_constraintTop_toBottomOf="@+id/roll_name_edit"
+        />
+
+    <EditText
+        android:id="@+id/roll_exposures_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text|number"
+        android:hint="@string/number_of_exposures"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/gray"
+        android:textColorHighlight="@color/light_gray"
+        android:ems="20"
+        android:textCursorDrawable="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_new_roll_button"
+        app:layout_constraintTop_toBottomOf="@+id/roll_type_edit"
+        />
+
+    <Button
+        android:id="@+id/add_new_roll_button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="@string/add"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/roll_exposures_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="@color/black" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
