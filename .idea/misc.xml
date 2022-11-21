@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/santi/StudioProjects/LFELNE/app/src/main/res/layout/activity_general_roll.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/santi/StudioProjects/LFELNE/app/src/main/res/layout/activity_rolls.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/santi/StudioProjects/LFELNE/app/src/main/res/layout/roll_item.xml" value="0.358695652173913" />
         <entry key="app/src/main/res/layout/activity_add_roll.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_general_roll.xml" value="0.24080657958984378" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2868972778320313" />
