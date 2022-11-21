@@ -27,10 +27,6 @@ public class RollAdapter extends ArrayAdapter<Roll> {
         mContext = context;
     }
 
-    public void updateAdapter() {
-        this.notifyDataSetChanged();
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Roll roll = getItem(position);

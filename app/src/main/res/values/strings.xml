@@ -22,4 +22,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_a_roll">Add a roll</string>
+    <string name="delete_this_roll">Delete this roll</string>
 </resources>

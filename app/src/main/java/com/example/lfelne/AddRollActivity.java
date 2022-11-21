@@ -25,17 +25,14 @@ public class AddRollActivity extends AppCompatActivity {
         EditText roll_exposures = (EditText) findViewById(R.id.roll_exposures_edit);
         Date start_date = new Date();
 
-        add_new_roll_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String init_roll = roll_name.getText() + "-" + roll_type.getText() + "-" +
-                        roll_exposures.getText() + "-0-" + start_date.getTime() + "-" +
-                        start_date.getTime();
-                Roll roll = new Roll(init_roll);
-                dbHandler.addNewRoll(roll);
+        add_new_roll_button.setOnClickListener(v -> {
+            String init_roll = roll_name.getText() + "-" + roll_type.getText() + "-" +
+                    roll_exposures.getText() + "-0-" + start_date.getTime() + "-" +
+                    start_date.getTime();
+            Roll roll = new Roll(init_roll);
+            dbHandler.addNewRoll(roll);
 
-                finish();
-            }
+            finish();
         });
     }
 }

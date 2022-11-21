@@ -51,12 +51,12 @@ public class Roll implements Serializable
         this.exposures = exposures;
     }
 
-    public Date getSTART_DATE() {
-        return START_DATE;
+    public long getSTART_DATE() {
+        return START_DATE.getTime();
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public long getEnd_date() {
+        return end_date.getTime();
     }
 
     public void setEnd_date(Date end_date) {
