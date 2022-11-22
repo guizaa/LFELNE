@@ -5,7 +5,7 @@
     <string name="map">MAP</string>
     <string name="settings">SETTINGS</string>
     <string name="lflne_logo">lflne logo</string>
-    <string name="_1_2_21_1_4_21">1/2/21 - 1/4/21</string>
+    <string name="_1_2_21_1_4_21">1/2/21 – 1/4/21</string>
     <string name="cancun">CANCUN</string>
     <string name="portra_400">PORTRA 400</string>
     <string name="roll_name">Roll Name</string>
@@ -24,4 +24,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="add_a_roll">Add a roll</string>
     <string name="delete_this_roll">Delete this roll</string>
+    <string name="roll_information">Roll information</string>
+    <string name="go_back">Go back</string>
 </resources>

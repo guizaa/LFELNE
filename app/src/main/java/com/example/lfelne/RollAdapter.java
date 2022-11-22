@@ -39,10 +39,10 @@ public class RollAdapter extends ArrayAdapter<Roll> {
             convertView = LayoutInflater.from(mContext).inflate(
                     R.layout.roll_item, parent, false);
 
-            viewHolder.roll_icon = (ImageView) convertView.findViewById(R.id.roll_icon);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.date_range = (TextView) convertView.findViewById(R.id.date_range);
-            viewHolder.roll_type = (TextView) convertView.findViewById(R.id.roll_type);
+            viewHolder.roll_icon = convertView.findViewById(R.id.roll_icon);
+            viewHolder.name = convertView.findViewById(R.id.name);
+            viewHolder.date_range = convertView.findViewById(R.id.date_range);
+            viewHolder.roll_type = convertView.findViewById(R.id.roll_type);
 
             convertView.setTag(viewHolder);
         } else {
@@ -50,7 +50,7 @@ public class RollAdapter extends ArrayAdapter<Roll> {
         }
 
         // Parse dates into one readable string
-        String date_string = roll.getSTART_DATE() + " - " + roll.getEnd_date();
+        String date_string = roll.getStringSTART_DATE() + " - " + roll.getStringEnd_date();
 
         // Initialize relative view
         viewHolder.name.setText(roll.getNAME());

@@ -1,8 +1,11 @@
 package com.example.lfelne;
 
+import android.text.format.DateFormat;
+
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Roll implements Serializable
@@ -28,8 +31,10 @@ public class Roll implements Serializable
     public String toString() {
         // In roll initialization format
         return NAME + "-" + ROLL_TYPE + "-" + MAX_EXPOSURES +
-                "-" + exposures + "-" + START_DATE.getTime() + "-" + end_date.getTime();
+                "-" + exposures + "-" + getSTART_DATE() + "-" + getEnd_date();
     }
+
+
 
     public String getNAME() {
         return NAME;
@@ -55,8 +60,16 @@ public class Roll implements Serializable
         return START_DATE.getTime();
     }
 
+    public String getStringSTART_DATE() {
+        return (String) DateFormat.format("MM/dd/yy", START_DATE);
+    }
+
     public long getEnd_date() {
         return end_date.getTime();
+    }
+
+    public String getStringEnd_date() {
+        return (String) DateFormat.format("MM/dd/yy", end_date);
     }
 
     public void setEnd_date(Date end_date) {
