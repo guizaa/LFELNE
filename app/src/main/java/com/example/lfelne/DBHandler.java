@@ -63,12 +63,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // Iterate through database
         while (!cursor.isAfterLast()) {
-            String roll_init = cursor.getString(1) + "-"
-                    + cursor.getString(2) + "-"
+            String roll_init = cursor.getString(0) + "-"
+                    + cursor.getString(1) + "-"
+                    + cursor.getInt(2) + "-"
                     + cursor.getInt(3) + "-"
-                    + cursor.getInt(4) + "-"
-                    + cursor.getLong(5) + "-"
-                    + cursor.getLong(6);
+                    + cursor.getLong(4) + "-"
+                    + cursor.getLong(5);
             Roll roll = new Roll(roll_init);
             returnList.add(roll);
             cursor.moveToNext();
