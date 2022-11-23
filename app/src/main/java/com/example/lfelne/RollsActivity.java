@@ -1,25 +1,19 @@
 package com.example.lfelne;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
-import android.view.View;
-import android.widget.AdapterView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class RollsActivity extends AppCompatActivity {
     private DBHandler dbHandler;
@@ -32,7 +26,8 @@ public class RollsActivity extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data.getBooleanExtra("deleted_roll", false))
-                        dbHandler.removeRoll(data.getLongExtra("roll_start_date", -1));
+                        dbHandler.removeRoll(data.getLongExtra("roll_start_date",
+                                -1L));
                 }
             }
     );
@@ -50,6 +45,23 @@ public class RollsActivity extends AppCompatActivity {
         add_roll_button.setOnClickListener(v ->
                 startActivity(new Intent(RollsActivity.this, AddRollActivity.class)));
 
+        // Add search bar
+        EditText searchbar = findViewById(R.id.rolls_list_searchbar);
+        searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                rollAdapter.getFilter().filter(editable.toString());
+            }
+        });
+
         // Initialize ListView
         setUpList();
         setUpOnClickListener();
@@ -60,7 +72,7 @@ public class RollsActivity extends AppCompatActivity {
         super.onResume();
         rolls.clear();
         rolls.addAll(dbHandler.collectRolls());
-        rollAdapter.notifyDataSetChanged();
+        rollAdapter.updateAdapter();
     }
 
     private void setUpList() {

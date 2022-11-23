@@ -63,11 +63,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // Iterate through database
         while (!cursor.isAfterLast()) {
-            String roll_init = cursor.getString(0) + "-"
-                    + cursor.getString(1) + "-"
-                    + cursor.getInt(2) + "-"
-                    + cursor.getInt(3) + "-"
-                    + cursor.getLong(4) + "-"
+            String roll_init = cursor.getString(0) + "\n"
+                    + cursor.getString(1) + "\n"
+                    + cursor.getInt(2) + "\n"
+                    + cursor.getInt(3) + "\n"
+                    + cursor.getLong(4) + "\n"
                     + cursor.getLong(5);
             Roll roll = new Roll(roll_init);
             returnList.add(roll);
@@ -82,11 +82,11 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = generateCursor(db, start_date);
 
-        String roll_init = cursor.getString(1) + "-"
-                + cursor.getString(2) + "-"
-                + cursor.getInt(3) + "-"
-                + cursor.getInt(4) + "-"
-                + cursor.getLong(5) + "-"
+        String roll_init = cursor.getString(1) + "\n"
+                + cursor.getString(2) + "\n"
+                + cursor.getInt(3) + "\n"
+                + cursor.getInt(4) + "\n"
+                + cursor.getLong(5) + "\n"
                 + cursor.getLong(6);
         Roll roll = new Roll(roll_init);
 
@@ -96,9 +96,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void removeRoll(long start_date) {
-        String deleteQuery = "DELETE FROM " + TABLE_NAME + " WHERE start_date = " + start_date;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(deleteQuery);
+        db.delete(TABLE_NAME, "start_date=?", new String[]{String.valueOf(start_date)});
     }
 
     public Cursor generateCursor(SQLiteDatabase db, long start_date) {
@@ -108,7 +107,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion) {
+        if (oldVersion > newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
             onCreate(db);
         }

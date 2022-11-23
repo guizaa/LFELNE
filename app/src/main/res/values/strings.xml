@@ -26,4 +26,8 @@
     <string name="delete_this_roll">Delete this roll</string>
     <string name="roll_information">Roll information</string>
     <string name="go_back">Go back</string>
+    <string name="name">Name</string>
+    <string name="max_exposures">Max Exposures</string>
+    <string name="date_created">Date Created</string>
+    <string name="search_rolls">Search rolls</string>
 </resources>

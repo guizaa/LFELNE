@@ -26,13 +26,24 @@ public class AddRollActivity extends AppCompatActivity {
         Date start_date = new Date();
 
         add_new_roll_button.setOnClickListener(v -> {
-            String init_roll = roll_name.getText() + "-" + roll_type.getText() + "-" +
-                    roll_exposures.getText() + "-0-" + start_date.getTime() + "-" +
-                    start_date.getTime();
-            Roll roll = new Roll(init_roll);
-            dbHandler.addNewRoll(roll);
+            try {
+                if (Short.parseShort(String.valueOf(roll_exposures.getText())) > 256 ||
+                        Short.parseShort(String.valueOf(roll_exposures.getText())) < 0) {
+                    roll_exposures.setError("Enter a number between 0 and 256");
+                }
+                else {
+                    String init_roll = roll_name.getText() + "\n" + roll_type.getText() + "\n" +
+                            roll_exposures.getText() + "\n0\n" + start_date.getTime() + "\n" +
+                            start_date.getTime();
+                    Roll roll = new Roll(init_roll);
+                    dbHandler.addNewRoll(roll);
 
-            finish();
+                    finish();
+                }
+            }
+            catch (NumberFormatException | ArithmeticException e) {
+                roll_exposures.setError("Enter a number between 0 and 256");
+            }
         });
     }
 }
