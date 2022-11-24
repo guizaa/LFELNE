@@ -40,8 +40,4 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="Theme.LFELNE.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.LFELNE.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
