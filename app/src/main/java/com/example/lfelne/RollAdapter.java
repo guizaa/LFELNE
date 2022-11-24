@@ -10,6 +10,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
@@ -27,7 +29,7 @@ public class RollAdapter extends ArrayAdapter<Roll> implements Filterable {
     }
 
     public RollAdapter(Context context, ArrayList<Roll> roll_list) {
-        super(context, R.layout.roll_item, roll_list);
+        super(context, R.layout.roll_item, R.id.roll_id, roll_list);
         this.roll_list = new ArrayList<>(roll_list);
         this.displayed_roll_list = roll_list;
         mContext = context;
@@ -41,7 +43,7 @@ public class RollAdapter extends ArrayAdapter<Roll> implements Filterable {
 
     @Override
     public Filter getFilter() {
-        Filter filter = new Filter() {
+        return new Filter() {
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
@@ -70,7 +72,6 @@ public class RollAdapter extends ArrayAdapter<Roll> implements Filterable {
                 return results;
             }
         };
-        return filter;
     }
 
     @Override
@@ -105,5 +106,10 @@ public class RollAdapter extends ArrayAdapter<Roll> implements Filterable {
         viewHolder.roll_icon.setImageResource(R.drawable.roll_icon);
 
         return convertView;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
+        return getView(position, convertView, parent);
     }
 }

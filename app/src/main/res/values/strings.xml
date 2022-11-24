@@ -30,4 +30,5 @@
     <string name="max_exposures">Max Exposures</string>
     <string name="date_created">Date Created</string>
     <string name="search_rolls">Search rolls</string>
+    <string name="take_a_photo">Take a photo</string>
 </resources>

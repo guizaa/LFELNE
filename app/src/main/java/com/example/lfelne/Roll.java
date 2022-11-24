@@ -57,8 +57,8 @@ public class Roll implements Serializable
         return exposures;
     }
 
-    public void setExposures(short exposures) {
-        this.exposures = exposures;
+    public void incrementExposures() {
+        this.exposures++;
     }
 
     public long getSTART_DATE() {
@@ -79,5 +79,9 @@ public class Roll implements Serializable
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public boolean equals(Roll other_roll) {
+        return getSTART_DATE() == other_roll.getSTART_DATE();
     }
 }

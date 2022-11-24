@@ -31,7 +31,12 @@ public class AddRollActivity extends AppCompatActivity {
                         Short.parseShort(String.valueOf(roll_exposures.getText())) < 0) {
                     roll_exposures.setError("Enter a number between 0 and 256");
                 }
-                else {
+                if (roll_name.getText().toString().length() > 15) {
+                    roll_name.setError("Enter a name less than 15 characters");
+                }
+                else if (roll_name.getText().length() != 0 &&
+                        roll_type.getText().length() != 0 &&
+                        roll_exposures.getText().length() != 0) {
                     String init_roll = roll_name.getText() + "\n" + roll_type.getText() + "\n" +
                             roll_exposures.getText() + "\n0\n" + start_date.getTime() + "\n" +
                             start_date.getTime();

@@ -25,6 +25,7 @@ public class RollsActivity extends AppCompatActivity {
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
+                    assert data != null;
                     if (data.getBooleanExtra("deleted_roll", false))
                         dbHandler.removeRoll(data.getLongExtra("roll_start_date",
                                 -1L));
@@ -49,13 +50,9 @@ public class RollsActivity extends AppCompatActivity {
         EditText searchbar = findViewById(R.id.rolls_list_searchbar);
         searchbar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable editable) {
                 rollAdapter.getFilter().filter(editable.toString());

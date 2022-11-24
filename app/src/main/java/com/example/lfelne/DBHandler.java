@@ -56,7 +56,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Roll> collectRolls() {
         ArrayList<Roll> returnList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst();
@@ -78,26 +77,44 @@ public class DBHandler extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public Roll getRoll(long start_date) {
+    public ArrayList<Roll> collectNonFullRolls() {
+        ArrayList<Roll> returnList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE exposures < max_exposures";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = generateCursor(db, start_date);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
 
-        String roll_init = cursor.getString(1) + "\n"
-                + cursor.getString(2) + "\n"
-                + cursor.getInt(3) + "\n"
-                + cursor.getInt(4) + "\n"
-                + cursor.getLong(5) + "\n"
-                + cursor.getLong(6);
-        Roll roll = new Roll(roll_init);
-
+        // Iterate through database
+        while (!cursor.isAfterLast()) {
+            String roll_init = cursor.getString(0) + "\n"
+                    + cursor.getString(1) + "\n"
+                    + cursor.getInt(2) + "\n"
+                    + cursor.getInt(3) + "\n"
+                    + cursor.getLong(4) + "\n"
+                    + cursor.getLong(5);
+            Roll roll = new Roll(roll_init);
+            returnList.add(roll);
+            cursor.moveToNext();
+        }
         cursor.close();
         db.close();
-        return roll;
+        return returnList;
+    }
+
+    public void incrementExposures(long start_date, short old_exposures) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        short new_exposures = (short) (old_exposures + 1);
+        String updateQuery = "UPDATE " + TABLE_NAME + " SET exposures = " +
+                String.valueOf(new_exposures) +
+                " WHERE start_date = " + start_date;
+        db.execSQL(updateQuery);
+        db.close();
     }
 
     public void removeRoll(long start_date) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "start_date=?", new String[]{String.valueOf(start_date)});
+        db.close();
     }
 
     public Cursor generateCursor(SQLiteDatabase db, long start_date) {
