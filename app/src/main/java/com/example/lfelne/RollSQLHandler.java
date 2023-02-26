@@ -7,8 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-public class DBHandler extends SQLiteOpenHelper {
+public class RollSQLHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "lfelnedb";
     private static final int DB_VERSION = 1;
@@ -19,9 +20,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String EXPOSURES_COL = "exposures";
     private static final String START_DATE_COL = "start_date";
     private static final String END_DATE_COL = "end_date";
+    private static final String IMAGE_URIS_COL = "image_uris";
 
 
-    public DBHandler(Context context) {
+    public RollSQLHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -30,10 +32,11 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + NAME_COL + " TEXT,"
                 + TYPE_COL + " TEXT,"
-                + MAX_EXPOSURES_COL + " TEXT,"
-                + EXPOSURES_COL + " TEXT,"
-                + START_DATE_COL + " TEXT,"
-                + END_DATE_COL + " TEXT)";
+                + MAX_EXPOSURES_COL + " SMALLINT,"
+                + EXPOSURES_COL + " SMALLINT,"
+                + START_DATE_COL + " BIGINT,"
+                + END_DATE_COL + " BIGINT,"
+                + IMAGE_URIS_COL + " TEXT)";
         db.execSQL(query);
     }
 
@@ -48,6 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(EXPOSURES_COL, roll.getExposures());
         values.put(START_DATE_COL, roll.getSTART_DATE());
         values.put(END_DATE_COL, roll.getEnd_date());
+        values.put(IMAGE_URIS_COL, "");
 
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -101,12 +105,34 @@ public class DBHandler extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public String getImageUris(long start_date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = generateCursor(db, start_date);
+        cursor.moveToFirst();
+        String uris = cursor.getString(6);
+        cursor.close();
+        db.close();
+        return uris;
+    }
+
     public void incrementExposures(long start_date, short old_exposures) {
         SQLiteDatabase db = this.getWritableDatabase();
         short new_exposures = (short) (old_exposures + 1);
         String updateQuery = "UPDATE " + TABLE_NAME + " SET exposures = " +
                 String.valueOf(new_exposures) +
                 " WHERE start_date = " + start_date;
+        db.execSQL(updateQuery);
+        db.close();
+
+        addBlankImage(start_date);
+    }
+
+    public void addBlankImage(long start_date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long date = new Date().getTime(); // get current date
+        String init_string = "'n%" + date + ",'";
+        String updateQuery = "UPDATE " + TABLE_NAME + " SET image_uris = image_uris || "
+                + init_string + " WHERE start_date = " + start_date;
         db.execSQL(updateQuery);
         db.close();
     }

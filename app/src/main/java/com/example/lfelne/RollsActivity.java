@@ -16,7 +16,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class RollsActivity extends AppCompatActivity {
-    private DBHandler dbHandler;
+    private RollSQLHandler dbHandler;
     ListView listView;
     ArrayList<Roll> rolls;
     RollAdapter rollAdapter;
@@ -37,7 +37,7 @@ public class RollsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rolls);
-        dbHandler = new DBHandler(RollsActivity.this);
+        dbHandler = new RollSQLHandler(RollsActivity.this);
         listView = findViewById(R.id.rolls_list);
 
         // Add roll button

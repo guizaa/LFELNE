@@ -6,20 +6,16 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.window.SplashScreen;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    DBHandler dbHandler;
+    RollSQLHandler dbHandler;
     ArrayList<Roll> rolls;
     RollAdapter adapter;
     Roll selected_roll;
@@ -32,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        dbHandler = new DBHandler(MainActivity.this);
+        dbHandler = new RollSQLHandler(MainActivity.this);
         rolls = new ArrayList<>(dbHandler.collectNonFullRolls());
         adapter = new RollAdapter(getApplicationContext(), rolls);
 
@@ -83,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (!new_rolls.isEmpty()) {
             rolls.addAll(new_rolls);
         }
-        adapter.notifyDataSetChanged();
+        adapter.updateAdapter();
         updateExposuresCount();
     }
 
@@ -91,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         // Sets up exposures count
         if (selected_roll == null)
             exposures_count.setText("");
-        if (!rolls.isEmpty() && selected_roll != null) {
+        else if (!rolls.isEmpty()) {
             String exposures_count_string = selected_roll.getExposures() + "/" +
                     selected_roll.getMAX_EXPOSURES();
             exposures_count.setText(exposures_count_string);

@@ -31,4 +31,6 @@
     <string name="date_created">Date Created</string>
     <string name="search_rolls">Search rolls</string>
     <string name="take_a_photo">Take a photo</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="roll_icon">Roll Icon</string>
 </resources>
