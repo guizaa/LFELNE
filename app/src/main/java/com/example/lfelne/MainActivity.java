@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         // Sets up exposures count
         if (selected_roll == null)
             exposures_count.setText("");
-        else if (!rolls.isEmpty()) {
+        else {
             String exposures_count_string = selected_roll.getExposures() + "/" +
                     selected_roll.getMAX_EXPOSURES();
             exposures_count.setText(exposures_count_string);

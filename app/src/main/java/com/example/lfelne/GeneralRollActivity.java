@@ -45,6 +45,7 @@ public class GeneralRollActivity extends AppCompatActivity {
         setUpDeleteListener(delete_roll_button);
         setUpInfoListener(general_roll_name);
         setUpImageList(image_list);
+        setUpOnGeneralImageClickListener(image_list);
 
         // Set text according to roll
         general_roll_name.setText(roll.getNAME());
@@ -111,5 +112,11 @@ public class GeneralRollActivity extends AppCompatActivity {
         setUpImages();
         imageAdapter = new ImageAdapter(getApplicationContext(), images);
         image_list.setAdapter(imageAdapter);
+    }
+
+    private void setUpOnGeneralImageClickListener(@NonNull ListView image_list) {
+        image_list.setOnItemClickListener((adapterView, view, position, id) -> {
+            // TODO: IMPLEMENT
+        });
     }
 }
